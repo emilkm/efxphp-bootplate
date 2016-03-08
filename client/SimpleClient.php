@@ -59,7 +59,7 @@ class SimpleClient
     }
 
     /**
-     * @returns emilkm\efxphp\Response
+     * @return emilkm\efxphp\Response
      */
     public function testpublicServicePublicMethodNoParams()
     {
@@ -81,7 +81,7 @@ class SimpleClient
     /**
      * @param int $p1
      *
-     * @returns emilkm\efxphp\Response
+     * @return emilkm\efxphp\Response
      */
     public function testpublicServicePublicMethodOptionalParam($p1 = null)
     {
@@ -103,7 +103,7 @@ class SimpleClient
     /**
      * @param int $p1
      *
-     * @returns emilkm\efxphp\Response
+     * @return emilkm\efxphp\Response
      */
     public function testpublicServicePublicMethodMandatoryParam($p1)
     {
