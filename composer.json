@@ -1,0 +1,49 @@
+{
+    "name": "emilkm/efxphp-bootplate",
+    "description": "Minimal template for efxphp applications",
+    "type": "library",
+    "keywords": [
+        "efxphp",
+        "bootplate"
+    ],
+    "homepage": "http://emilmalinov.com/efxphp-bootplate",
+    "license": "Apache License 2.0",
+    "authors": [
+        {
+            "name": "Emil Malinov",
+            "email": "emilkm@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "suggest": {
+        "emilkm/amfext": "Custom PHP extension for Action Message Format (AMF) encoding and decoding with support for AMF0 and AMF3"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "emilkm/efxphp": "*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/emilkm/efxphp.git"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "emilkm/amfext",
+                "version": "v1.0.0",
+                "dist": {
+                    "type": "zip",
+                    "url": "http://emilmalinov.com/amfext"
+                }
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "myapp\\client\\": "client/",
+            "myapp\\server\\": "services/myapp/",
+            "emilkm\\efxphp\\": "vendor/emilkm/efxphp/src/"
+        }
+    }
+}
