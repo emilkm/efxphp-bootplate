@@ -12,7 +12,9 @@ class AppConfig extends ServerConfig
 {
     public function __construct()
     {
-        $this->productionMode = false;
+        $this->servicesRootNamespace = '';
+        $this->crossOriginResourceSharing = true;
+        $this->contentEncodingEnabled = true;
     }
     
     /**

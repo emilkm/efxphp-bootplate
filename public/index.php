@@ -5,10 +5,10 @@ use emilkm\efxphp\Response;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-//'http://127.0.0.1:9999/server/index.php'
+$endpoint = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . 'server/index.php';
 
 $client = new SimpleClient(
-    'http://127.0.0.1/5618/efxphp-bootplate/server/index.php',
+    $endpoint,
     '127.0.0.1:8888'
 );
 
