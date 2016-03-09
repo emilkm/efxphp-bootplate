@@ -6,15 +6,14 @@ $autoLoader = require_once BASE . 'vendor/autoload.php';
 
 use myapp\server\AppConfig;
 $appConfig = new AppConfig();
-$appConfig->productionMode = true;
-$appConfig->servicesRootDirectory = BASE . 'services';
-$appConfig->servicesRootNamespace = '';
-$appConfig->cacheDirectory = BASE . 'services/cache';
-$appConfig->crossOriginResourceSharing = true;
-$appConfig->contentEncodingEnabled = true;
+if ($appConfig->servicesRootDirectory === null) {
+    $appConfig->servicesRootDirectory = BASE . 'services';
+}
+if ($appConfig->cacheDirectory === null) {
+    $appConfig->cacheDirectory = BASE . 'services/cache';
+}
 
 use emilkm\efxphp\Dice;
-
 $dice = new Dice();
 $dice->addInstance('emilkm\\efxphp\\Dice', $dice);
 $dice->addInstance('myapp\\server\\AppConfig', $appConfig);
