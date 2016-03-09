@@ -89,7 +89,7 @@ class SimpleClient
         $this->amfClient->invoke(
             'myapp.server.MyService',
             'publicMethodOptionalParam',
-            null,
+            [$p1],
             function ($result) use (&$response) {
                 $response = $result;
             },
@@ -111,7 +111,7 @@ class SimpleClient
         $this->amfClient->invoke(
             'myapp.server.MyService',
             'publicMethodMandatoryParam',
-            [],
+            [$p1],
             function ($result) use (&$response) {
                 $response = $result;
             },
