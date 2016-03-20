@@ -9,6 +9,14 @@ use Exception;
 class MyService
 {
     /**
+     * @return string A session id
+     */
+    public function init()
+    {
+        return '123';
+    }
+
+    /**
      * @return bool
      */
     public function publicMethodNoParams()

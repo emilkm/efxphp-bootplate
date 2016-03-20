@@ -16,6 +16,9 @@ use emilkm\efxphp\Amf\Messages\AcknowledgeMessage;
 use emilkm\efxphp\Amf\Messages\CommandMessage;
 use emilkm\efxphp\Amf\Messages\RemotingMessage;
 
+/**
+ * SimpleClient provides an easy way to demonstrate communication with the server.
+ */
 class SimpleClient
 {
     protected $serializer;
@@ -59,6 +62,40 @@ class SimpleClient
     }
 
     /**
+     * put your comment there...
+     *
+     * @param mixed $error
+     * @param mixed $token
+     */
+    public function faultEvent($error, $token = null) {
+
+    }
+
+    /**
+     *
+     */
+    public function testinit()
+    {
+        $this->amfClient->invoke(
+            'myapp.server.MyService',
+            'init',
+            null,
+            array($this, 'initResult'),
+            array($this, 'faultEvent'),
+            'init'
+        );
+    }
+
+    /**
+     * @param emilkm\efxphp\Response $response
+     * @param mixed                  $token
+     */
+    public function initResult($response)
+    {
+        $this->amfClient->setSessionId($response->data);
+    }
+
+    /**
      * @return emilkm\efxphp\Response
      */
     public function testpublicServicePublicMethodNoParams()
@@ -68,14 +105,24 @@ class SimpleClient
             'myapp.server.MyService',
             'publicMethodNoParams',
             null,
+            array($this, 'testpublicServicePublicMethodNoParamsResult'),
+            array($this, 'faultEvent'),
             function ($result) use (&$response) {
                 $response = $result;
-            },
-            function ($error) use (&$response) {
-                $response = $error;
             }
         );
         return $response;
+    }
+
+    /**
+     * @param emilkm\efxphp\Response $response
+     * @param mixed                  $token
+     */
+    public function testpublicServicePublicMethodNoParamsResult($response, $token = null)
+    {
+        if (is_callable($token)) {
+            $token($response);
+        }
     }
 
     /**
@@ -89,7 +136,7 @@ class SimpleClient
         $this->amfClient->invoke(
             'myapp.server.MyService',
             'publicMethodOptionalParam',
-            [$p1],
+            $p1,
             function ($result) use (&$response) {
                 $response = $result;
             },
@@ -111,7 +158,7 @@ class SimpleClient
         $this->amfClient->invoke(
             'myapp.server.MyService',
             'publicMethodMandatoryParam',
-            [$p1],
+            $p1,
             function ($result) use (&$response) {
                 $response = $result;
             },
