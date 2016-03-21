@@ -62,7 +62,7 @@ class SimpleClient
     }
 
     /**
-     * put your comment there...
+     * Demonstrate a common fault handler.
      *
      * @param mixed $error
      * @param mixed $token
@@ -72,7 +72,7 @@ class SimpleClient
     }
 
     /**
-     *
+     * Establish a session with the server.
      */
     public function testinit()
     {
