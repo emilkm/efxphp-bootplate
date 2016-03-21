@@ -9,17 +9,17 @@
 
 package emilkm.efxphp
 {
-	
+    
 public class Response extends Object
 {
     public var code:int;
     public var message:String;
-	public var detail:String;
-	public var data:Object;
+    public var detail:String;
+    public var data:Object;
     
- 	public function Response()
-	{
-    	
+    public function Response()
+    {
+        
     }
 }
 
