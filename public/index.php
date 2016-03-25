@@ -18,3 +18,4 @@ $response2 = $client->testpublicServicePublicMethodOptionalParam();
 $response3 = $client->testpublicServicePublicMethodMandatoryParam(1);
 
 echo 'Run a small Flex app that makes the same service calls <a href="efxsaucer.html">efxsaucer</a>';
+echo '<br> or a small JavaScript app that makes the same service calls <a href="amfjssaucer.html">amfjssaucer</a>';
