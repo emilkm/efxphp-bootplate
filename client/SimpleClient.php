@@ -93,6 +93,7 @@ class SimpleClient
     public function initResult($response)
     {
         $this->amfClient->setSessionId($response->data);
+        $this->amfClient->releaseQueue();
     }
 
     /**
