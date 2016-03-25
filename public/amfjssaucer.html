@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <title>AMFJS</title>
+    <script src="amf.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var endpoint = window.location.href.substr(0, window.location.href.lastIndexOf('/')) + "/server/index.php";
+        var amfClient = new amf.Client("efxphp", endpoint);
+        amfClient.invoke("myapp.server.MyService", "init", [],
+            function(response, token) {
+                console.log(response.data);
+                amfClient.setSessionId(response.data);
+                amfClient.releaseQueue();
+            },
+            function(error, token) {
+                console.log("init errror");
+            },
+            "init",
+            true
+        );
+
+        amfClient.invoke("myapp.server.MyService", "publicMethodNoParams", [],
+                function (response, token) {
+                    console.log(response.data);
+                },
+                function (response) {
+                    console.log("publicMethodNoParams errror");
+                }
+        );
+        amfClient.invoke("myapp.server.MyService", "publicMethodOptionalParam", [],
+                function (response, token) {
+                    console.log(response.data);
+                },
+                function (error, token) {
+                    console.log("publicMethodOptionalParam errror");
+                }
+        );
+        amfClient.invoke("myapp.server.MyService", "publicMethodMandatoryParam", [1],
+                function (response) {
+                    console.log(response.data);
+                },
+                function (error, token) {
+                    console.log("publicMethodMandatoryParam errror");
+                }
+        );
+    </script>
+</body>
+</html>

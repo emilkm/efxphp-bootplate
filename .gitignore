@@ -1,3 +1,6 @@
 Config.php
+composer.lock
 efxsaucer/bin-debug
 efxsaucer/bin-release
+public/.idea/
+public/public.iml
