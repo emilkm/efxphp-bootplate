@@ -8,6 +8,8 @@
     <script type="text/javascript">
         var endpoint = window.location.href.substr(0, window.location.href.lastIndexOf('/')) + "/server/index.php";
         var amfClient = new amf.Client("efxphp", endpoint);
+
+        // Tell the amfjs to hold the queue while we setup the session
         amfClient.invoke("myapp.server.MyService", "init", [],
             function(response, token) {
                 console.log(response.data);
@@ -15,35 +17,36 @@
                 amfClient.releaseQueue();
             },
             function(error, token) {
-                console.log("init errror");
+                console.log("init error");
             },
             "init",
             true
         );
 
+        // The following requests will be held until the queue is released
         amfClient.invoke("myapp.server.MyService", "publicMethodNoParams", [],
-                function (response, token) {
-                    console.log(response.data);
-                },
-                function (response) {
-                    console.log("publicMethodNoParams errror");
-                }
+            function (response, token) {
+                console.log(response.data);
+            },
+            function (response) {
+                console.log("publicMethodNoParams error");
+            }
         );
         amfClient.invoke("myapp.server.MyService", "publicMethodOptionalParam", [],
-                function (response, token) {
-                    console.log(response.data);
-                },
-                function (error, token) {
-                    console.log("publicMethodOptionalParam errror");
-                }
+            function (response, token) {
+                console.log(response.data);
+            },
+            function (error, token) {
+                console.log("publicMethodOptionalParam error");
+            }
         );
         amfClient.invoke("myapp.server.MyService", "publicMethodMandatoryParam", [1],
-                function (response) {
-                    console.log(response.data);
-                },
-                function (error, token) {
-                    console.log("publicMethodMandatoryParam errror");
-                }
+            function (response) {
+                console.log(response.data);
+            },
+            function (error, token) {
+                console.log("publicMethodMandatoryParam error");
+            }
         );
     </script>
 </body>
